@@ -15,7 +15,7 @@ This project is a **Salesforce-based VA Claims Processing System** designed to s
 - **Salesforce Experience Cloud**  
 - **Apex (Triggers & Classes)**  
 - **Lightning Web Components (LWCs)**
-- - **Lightning Component (Aura)**
+  - **Lightning Component (Aura)**
   -   FAQ component
 - **Visualforce Page**
   -Personal Info Page
