@@ -1,0 +1,79 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={appeal}>
+            <div class="slds-m-bottom_large slds-align_absolute-center">
+                <lightning-icon icon-name="standard:work_plan_template" alternative-text="Appeal Detail" size="small" class="slds-m-right_small"></lightning-icon>
+                <h2 class="slds-text-heading_large">Appeal Details</h2>
+            </div>
+
+            
+            <!-- Progress Indicator for Appeal Status -->
+            <lightning-progress-indicator current-step={currentStatus} type="path" class="slds-m-bottom_large">
+                <lightning-progress-step label="Received" value="Received"></lightning-progress-step>
+                <lightning-progress-step label="Under Review" value="Under Review"></lightning-progress-step>
+                <lightning-progress-step label="Evidence Gathering" value="Evidence Gathering"></lightning-progress-step>
+                <lightning-progress-step label="Decision Pending" value="Decision Pending"></lightning-progress-step>
+                <lightning-progress-step label="Decision Made" value="Decision Made"></lightning-progress-step>
+            </lightning-progress-indicator>
+
+            <div class="slds-grid slds-wrap slds-m-bottom_medium slds-m-top_large">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-m-bottom_small"><strong><u>Appeal ID:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Name}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Denied Claim:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Denied_Case__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Type:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Appeal_Type__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Reason for Appeal:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Reason_for_Appeal__c}</div>
+
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-m-bottom_small"><strong><u>Status:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Status__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Final Decision:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Final_Decision__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Date Opened:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Date_Created__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Date Closed:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {appeal.Date_Closed__c}</div>
+                </div>
+            </div>
+            
+            <lightning-file-upload
+                label="Upload Supporting Documents"
+                name="fileUploader"
+                accept=".pdf,.png,.jpg,.docx"
+                record-id={appeal.Id}
+                onuploadfinished={handleUploadFinished}
+                multiple
+            ></lightning-file-upload>
+
+            <template if:true={files}>
+                <h3 class="slds-text-heading_small slds-m-top_medium">Uploaded Files</h3>
+                <ul class="slds-list_dotted">
+                    <template for:each={files} for:item="file">
+                        <li key={file.Id}>
+                            <lightning-icon icon-name="utility:attach" size="x-small"></lightning-icon>
+                            <a href={file.downloadUrl} target="_blank">{file.title}</a> ({file.fileType})
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:false={files}>
+                <p class="slds-text-color_weak">No files uploaded yet.</p>
+            </template>
+
+
+        </template>
+        <template if:false={appeal}>
+            <p class="slds-text-color_weak">Select an appeal from the list to see details.</p>
+        </template>
+    </div>
+</template>

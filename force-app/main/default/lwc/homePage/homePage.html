@@ -1,0 +1,53 @@
+<template>
+    <lightning-card>
+        <!-- Top Section: Quick Links (Horizontal) -->
+        <div class="slds-grid slds-gutters slds-p-around_medium">
+            <div class="slds-col slds-size_1-of-1">
+                <c-quick-links></c-quick-links>
+            </div>
+        </div>
+
+        <!-- Middle Section: Table (Left) and Dashboard (Right) -->
+        <div class="slds-grid slds-gutters slds-p-around_medium">
+            <!-- Left Column: Claims & Appeals Table (1/3) -->
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-card title="My Claims and Appeals">
+                    <c-claims-and-appeals-overview></c-claims-and-appeals-overview>
+                </lightning-card>
+            </div>
+
+            <!-- Right Column: Dashboard (2/3) -->
+            <div class="slds-col slds-size_2-of-3">
+                <lightning-card>
+                    <!-- Open Claims and Open Appeals -->
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-card title="Open Claims" icon-name="standard:case">
+                                <p class="slds-p-horizontal_small">{openClaimsCount}</p>
+                            </lightning-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-card title="Open Appeals" icon-name="standard:case">
+                                <p class="slds-p-horizontal_small">{openAppealsCount}</p>
+                            </lightning-card>
+                        </div>
+                    </div>
+
+                    <!-- Claims Status and Appeals Status (Future Charts) -->
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-card title="Claims Status" icon-name="standard:case">
+                                <p class="slds-p-horizontal_small">Claims Status Chart (To be added)</p>
+                            </lightning-card>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-card title="Appeals Status" icon-name="standard:case">
+                                <p class="slds-p-horizontal_small">Appeals Status Chart (To be added)</p>
+                            </lightning-card>
+                        </div>
+                    </div>
+                </lightning-card>
+            </div>
+        </div>
+    </lightning-card>
+</template>

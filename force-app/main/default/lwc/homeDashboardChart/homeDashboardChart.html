@@ -1,0 +1,40 @@
+<template>
+    <div class="chart-container">
+        <svg viewBox="0 0 36 36" class="circular-chart">
+            <!-- Background Circle -->
+            <circle class="circle-bg" cx="18" cy="18" r="15.915"></circle>
+
+            <!-- Open Cases Segment (Dynamic) -->
+            <circle class="circle open"
+                cx="18" cy="18" r="15.915"
+                stroke-dasharray="100 0"
+                transform="rotate(-90 18 18)">
+            </circle>
+
+            <!-- Closed Cases Segment -->
+            <circle class="circle closed"
+                cx="18" cy="18" r="15.915"
+                stroke-dasharray={chartSlice}
+                transform="rotate(-90 18 18)">
+            </circle>
+
+            <!-- Center Label -->
+            <text x="18" y="18" class="percentage-text">
+                100%
+            </text>
+            <!-- Center Label (Open and Closed Percentages) 
+            <text x="18" y="12" class="percentage-text" text-anchor="middle">
+                <tspan x="18" dy="0.2em">Open: {percentage}%</tspan>
+                <tspan x="18" dy="1.2em">Closed: {closedPercentage}%</tspan>
+            </text> -->
+        </svg>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-box open"></div>
+            <span>Open: {openCasesCount} ({percentage}%)</span>
+            <div class="legend-box closed"></div>
+            <span>Closed: {closedCasesCount} ({closedPercentage}%)</span>
+        </div>
+    </div>
+</template>

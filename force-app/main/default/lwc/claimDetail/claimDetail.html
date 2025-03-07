@@ -1,0 +1,83 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <template if:true={claim}>
+            <div class="slds-m-bottom_large slds-align_absolute-center">
+                <lightning-icon icon-name="standard:partner_fund_claim" alternative-text="Claim Detail" size="small" class="slds-m-right_small"></lightning-icon>
+                <h2 class="slds-text-heading_large">Claim Details</h2>
+            </div>
+
+
+            <!-- Progress Indicator for Claim Status -->
+            <lightning-progress-indicator current-step={currentStatus} type="path" class="slds-m-bottom_large">
+                <lightning-progress-step label="Received" value="Received"></lightning-progress-step>
+                <lightning-progress-step label="Under Review" value="Under Review"></lightning-progress-step>
+                <lightning-progress-step label="Evidence Gathering" value="Evidence Gathering"></lightning-progress-step>
+                <lightning-progress-step label="Decision Pending" value="Decision Pending"></lightning-progress-step>
+                <lightning-progress-step label="Decision Made" value="Decision Made"></lightning-progress-step>
+                <lightning-progress-step label="Closed" value="Closed"></lightning-progress-step>
+            </lightning-progress-indicator>
+
+
+            <div class="slds-grid slds-wrap slds-m-bottom_medium slds-m-top_large">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-m-bottom_small"><strong><u>Claim Number:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.CaseNumber}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Type:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.Claim_Type__c}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Status:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.Status}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Final Decision:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.Final_Decision__c}</div>
+
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-m-bottom_small"><strong><u>Subject:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.Subject}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Description:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.Description}</div>
+       
+                    <div class="slds-m-bottom_small"><strong><u>Date Opened:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.CreatedDate}</div>
+
+                    <div class="slds-m-bottom_small"><strong><u>Date Closed:</u></strong></div>
+                    <div class="slds-m-bottom_medium">&#x2022; {claim.ClosedDate}</div>
+                </div>
+            </div>
+
+            <!-- Upload Files Button -->
+            <lightning-file-upload
+                label="Attach File"
+                name="fileUploader"
+                record-id={claimId}
+                onuploadfinished={handleUploadFinished}
+                multiple  >
+            </lightning-file-upload>
+
+            <!-- Display Uploaded Files  -->
+            <template if:true={files}>
+                <h3 class="slds-text-heading_small slds-m-top_medium">Uploaded Files</h3>
+                <ul class="slds-list_dotted">
+                    <template for:each={files} for:item="file">
+                        <li key={file.Id}>
+                            <lightning-icon icon-name="utility:attach" size="x-small"></lightning-icon>
+                            <a href={file.downloadUrl} target="_blank">{file.title}</a> ({file.fileType})
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:false={files}>
+                <p class="slds-text-color_weak">No files uploaded yet.</p>
+            </template>
+       
+            
+
+        </template>
+        <template if:false={claim}>
+            <p class="slds-text-color_weak">Select a claim from the list to see details.</p>
+        </template>
+    </div>
+</template>

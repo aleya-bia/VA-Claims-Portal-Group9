@@ -1,0 +1,38 @@
+<template>
+    <lightning-tabset>
+        <!-- Claims Tab -->
+        <lightning-tab label="Claims">
+            <div class="slds-grid slds-gutters">
+                <!-- Claims List (Left Panel) -->
+                <div class="slds-col slds-size_1-of-3">
+                    <div class="scroll-container">
+                        <c-claims-list onclaimselect={handleClaimSelection}></c-claims-list>
+                    </div>
+                    
+                </div>
+
+                <!-- Claims Detail (Right Panel) -->
+                <div class="slds-col slds-size_2-of-3">
+                    <c-claim-detail claim-id={selectedClaimId}></c-claim-detail>
+                </div>
+            </div>
+        </lightning-tab>
+
+        <!-- Appeals Tab -->
+        <lightning-tab label="Appeals">
+            <div class="slds-grid slds-gutters">
+                <!-- Appeals List (Left Panel) -->
+                <div class="slds-col slds-size_1-of-3">
+                    <div class="scroll-container">
+                        <c-appeals-list onappealselect={handleAppealSelection}></c-appeals-list>
+                    </div>                   
+                </div>
+
+                <!-- Appeals Detail (Right Panel) -->
+                <div class="slds-col slds-size_2-of-3"> 
+                    <c-appeal-detail appeal-id={selectedAppealId}></c-appeal-detail>
+                </div>
+            </div>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

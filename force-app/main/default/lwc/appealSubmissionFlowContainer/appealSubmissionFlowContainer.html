@@ -1,0 +1,8 @@
+<template>
+    <lightning-card> 
+        <div style="font-size: 1.5rem; font-weight: bold; padding: 0.5rem 1rem 0.01rem;text-align: center;">
+            Submit an Appeal for Denied Claims
+        </div>
+        <lightning-flow flow-api-name={flowName} onstatuschange={handleStatusChange}></lightning-flow>
+    </lightning-card>
+</template>

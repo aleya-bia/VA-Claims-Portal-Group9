@@ -1,0 +1,66 @@
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.circular-chart {
+    width: 150px; /* Increase for larger size */
+    height: 150px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s ease;
+}
+
+/* Open Cases - yellow */
+.circle.open {
+    stroke: rgb(201, 163, 27);
+}
+
+/* Closed Cases - blue */
+.circle.closed {
+    stroke: rgb(6, 6, 112);
+}
+
+.percentage-text {
+    font-size: 4.5px;
+    font-weight: bold;
+    text-anchor: middle;
+    fill: black;
+    dominant-baseline: middle;
+}
+
+.legend {
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.legend-box {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.open {
+    background-color: rgb(201, 163, 27);
+}
+
+.closed {
+    background-color: rgb(6, 6, 112);
+}

@@ -1,0 +1,33 @@
+<template>
+    <div class="slds-box slds-theme_shade">
+
+        <div class="slds-m-bottom_medium slds-align_absolute-center">
+            <lightning-icon icon-name="standard:partner_fund_claim" alternative-text="Claims List" size="small" class="slds-m-right_small"></lightning-icon>
+            <h2 class="slds-text-heading_large">Claims List</h2>
+        </div>
+
+        <template if:true={claims}>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Claim Number</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={claims} for:item="claim">
+                        <tr key={claim.Id} data-id={claim.Id} onclick={handleClaimSelect} class="clickable-row">
+                            <td>{claim.CaseNumber}</td>
+                            <td>{claim.Status}</td>
+                            <td>{claim.Claim_Type__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={claims}>
+            <p>No claims found.</p>
+        </template>
+    </div>
+</template>

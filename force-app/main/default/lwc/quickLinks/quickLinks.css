@@ -1,0 +1,22 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(6, 6, 112); /* Salesforce Blue */
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 30px; /* Increased padding for better spacing */
+    margin: 0 20px;
+    font-size: 18px; /* Increased font size */
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    background-color: rgb(2, 2, 48); /* Darker blue */
+    border-radius: 5px;
+}

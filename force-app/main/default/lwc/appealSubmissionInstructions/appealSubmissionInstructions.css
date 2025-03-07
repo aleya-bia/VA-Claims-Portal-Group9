@@ -1,0 +1,14 @@
+.slds-card {
+    margin-top: 10px;
+}
+
+.slds-p-horizontal_medium {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.scrollable-panel {
+    height: 360px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 15px; /* Add padding to avoid content getting clipped */
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>  <!-- Optional: If you want it to appear on record pages -->
+        <target>lightning__AppPage</target>    <!-- Optional: If you want it to appear on app pages -->
+        <target>lightningCommunity__Page</target>  <!-- Make the component available on Experience Cloud pages -->
+    </targets>
+</LightningComponentBundle>

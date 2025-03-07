@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Claims Status Overview">
+        <div class="chart-container">
+            <svg width="500" height="250">
+                <!-- X-Axis -->
+                <line x1="40" y1="200" x2="450" y2="200" stroke="black"></line>
+
+                <!-- Bars and Labels -->
+                <template for:each={claimData} for:item="claim">
+                    <g key={claim.status}>
+                        <rect 
+                            x={claim.x} 
+                            y={claim.y} 
+                            width="50" 
+                            height={claim.height} 
+                            fill={claim.color}>
+                        </rect>
+                        <text x={claim.labelX} y={claim.labelY} text-anchor="middle" font-size="12">
+                            <tspan x={claim.labelX} dy="0">{claim.firstLine}</tspan> <!-- First line -->
+                            <tspan x={claim.labelX} dy="15">{claim.secondLine}</tspan> <!-- Second line -->
+                        </text>
+                        <text x={claim.labelX} y={claim.countY} text-anchor="middle" font-size="12" fill="black">{claim.count}</text>
+                    </g>
+                </template>
+            </svg>
+        </div>
+    </lightning-card>
+</template>

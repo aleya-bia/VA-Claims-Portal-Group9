@@ -1,0 +1,117 @@
+<apex:page standardController="Account"  extensions="VeteranInfoController" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageBlock title="Veteran Information">
+
+            <!-- Display veteran's personal information -->
+            <apex:pageBlockSection title="Personal Information" columns="2">
+                <apex:outputField label="Name" value="{!veteran.Name}" />
+                <apex:outputField label="Email" value="{!veteran.Email__c}"/>
+                <apex:outputField label="Phone" value="{!veteran.Phone}"/>
+                <apex:outputField label="Social Security Number" value="{!veteran.Social_Security_Number__c}"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Billing Address" />
+                    <apex:outputPanel >
+                        <apex:outputText value="{!veteran.BillingStreet}" /><br />
+                        <apex:outputText value="{!veteran.BillingCity}," />&nbsp;
+                        <apex:outputText value="{!veteran.BillingState}," />&nbsp;
+                        <apex:outputText value="{!veteran.BillingPostalCode}" />&nbsp;<br />
+                        <apex:outputText value="{!veteran.BillingCountry}" />
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <div style="margin-bottom: 10px; text-align: center;">
+                <apex:commandButton value="Request Update" action="{!redirectToFlow}" 
+                                    styleClass="slds-button slds-button_brand"/>
+            </div>
+
+            <!-- Display veteran's service detail -->
+            <apex:pageBlockSection title="Service Detail" columns="2">
+                <apex:outputField label="Military Branch" value="{!veteran.Military_Branch__c}" />
+                <apex:outputField label="Discharge Status" value="{!veteran.Discharge_Status__c}"/>
+                <apex:outputField label="Service Start Date" value="{!veteran.Service_Start_Date__c}"/>
+                <apex:outputField label="Disability Percentage" value="{!veteran.Disability_Percentage__c}"/>
+                <apex:outputField label="Service End Date" value="{!veteran.Service_End_Date__c}"/>
+            </apex:pageBlockSection>
+
+            <!-- Display veteran's Claims -->
+            <apex:pageBlockSection title="Active Claims" columns="1" rendered="{!NOT(ISNULL(Claims))}">
+               <apex:dataTable value="{!paginatedClaims}" var="claim" border="1">
+                    <apex:column headerValue="Claim Number">
+                        <apex:outputText value="{!claim.CaseNumber}" />
+                    </apex:column>
+                    <apex:column headerValue="Claim Type">
+                        <apex:outputText value="{!claim.Claim_Type__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Date/Time Opened">
+                        <apex:outputText value="{!claim.CreatedDate}" />
+                    </apex:column>
+                    <!-- <apex:column headerValue="Date/Time Closed">
+                        <apex:outputText value="{!claim.ClosedDate}" />
+                    </apex:column> -->
+                    <apex:column headerValue="Claim Status">
+                        <apex:outputText value="{!claim.Status}" />
+                    </apex:column>
+                    <!-- <apex:column headerValue="Final Decision">
+                        <apex:outputText value="{!claim.Final_Decision__c}" />
+                    </apex:column> -->
+                    <!-- <apex:column headerValue="Subject">
+                        <apex:outputText value="{!claim.Subject}" />
+                    </apex:column>
+                    <apex:column headerValue="Description">
+                        <apex:outputText value="{!claim.Description}" />
+                    </apex:column> -->
+               </apex:dataTable>
+
+            </apex:pageBlockSection>
+
+            <div style="margin-top: 10px; text-align: center;">
+                <apex:commandButton value="Previous" action="{!previousPage}" disabled="{!disablePrevious}" />
+                <apex:commandButton value="Next" action="{!nextPage}" disabled="{!disableNext}" />
+            </div>
+            <div style="margin-top: 5px; margin-bottom: 5px;">
+                Claims Page {!currentClaimsPage} of {!ROUND((totalClaims / pageSize) + 0.5, 0)}
+            </div>
+
+             <!-- Display veteran's appeals -->
+             <apex:pageBlockSection title="Active Appeals" columns="1" rendered="{!NOT(ISNULL(Claims))}">
+                <apex:dataTable value="{!paginatedAppeals}" var="appeal" border="1">
+                     <apex:column headerValue="Appeal Id">
+                         <apex:outputText value="{!appeal.Name}" />
+                     </apex:column>
+                     <apex:column headerValue="Denied Case ">
+                         <apex:outputText value="{!appeal.Denied_Case__r.CaseNumber}" />
+                     </apex:column>
+                     <apex:column headerValue="Date/Time Opened">
+                         <apex:outputText value="{!appeal.CreatedDate}" />
+                     </apex:column>
+                     <!-- <apex:column headerValue="Date/Time Closed">
+                         <apex:outputText value="{!appeal.Date_Closed__c}" />
+                     </apex:column> -->
+                     <apex:column headerValue="Status">
+                        <apex:outputText value="{!appeal.Status__c}" />
+                    </apex:column>
+                    <!-- <apex:column headerValue="Final Decision">
+                        <apex:outputText value="{!appeal.Final_Decision__c}" />
+                    </apex:column> -->
+                     <!-- <apex:column headerValue="Appeal Type">
+                         <apex:outputText value="{!appeal.Appeal_Type__c}" />
+                     </apex:column>
+                     <apex:column headerValue="Reason for Appeal">
+                         <apex:outputText value="{!appeal.Reason_for_Appeal__c}" />
+                     </apex:column> -->
+                </apex:dataTable>
+
+            </apex:pageBlockSection>
+
+            <div style="margin-top: 10px; text-align: center;">
+                <apex:commandButton value="Previous"    action="{!previousAppealsPage}" disabled="{!disablePreviousAppeals}"/>
+                <apex:commandButton value="Next"        action="{!nextAppealsPage}" disabled="{!disableNextAppeals}" />
+            </div>
+            <div style="margin-top: 5px; margin-bottom: 5px;">
+                Appeals Page {!currentAppealsPage} of {!ROUND((totalAppeals / pageSize) + 0.5, 0)}
+            </div>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

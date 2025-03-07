@@ -1,0 +1,9 @@
+.scroll-container {
+    height: 400px;                  /* Adjust height as needed */
+    overflow-y: auto;               /* Enables vertical scrolling */
+    padding: 5px;
+}
+
+.scroll-container:hover{
+    background-color: #f5f5f5;
+}

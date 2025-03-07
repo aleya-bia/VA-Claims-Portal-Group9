@@ -1,0 +1,28 @@
+<template>
+    <lightning-card>
+        <div style="font-size: 1.5rem; font-weight: bold; padding: 0.5rem 1rem 0.01rem; text-align: center;">
+            My Claims and Appeals
+        </div>
+        
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <template if:true={hasClaimsAndAppeals}>
+            <div style="height: 285px; overflow-y: auto;">
+                <lightning-datatable
+                    data={claimsAndAppeals}
+                    columns={columns}
+                    key-field="id"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </div>
+        </template>
+
+        <template if:false={hasClaimsAndAppeals}>
+            <p style="padding: 1rem; text-align: center; font-size: 1.2rem; color: gray;">
+                You don't have any claims or appeals at this time.
+            </p>
+        </template>
+    </lightning-card>
+</template>

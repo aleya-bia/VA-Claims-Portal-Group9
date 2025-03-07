@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-box slds-theme_shade">
+        <div class="slds-m-bottom_large slds-align_absolute-center">
+            <lightning-icon icon-name="standard:work_plan_template" alternative-text="Appeal List" size="small" class="slds-m-right_small"></lightning-icon>
+            <h2 class="slds-text-heading_large">Appeal List</h2>
+        </div>
+
+        <template if:true={appeals}>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Appeal ID</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={appeals} for:item="appeal">
+                        <tr key={appeal.Id} data-id={appeal.Id} onclick={handleAppealSelect} class="clickable-row">
+                            <td>{appeal.Name}</td>
+                            <td>{appeal.Appeal_Type__c}</td>
+                            <td>{appeal.Status__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={appeals}>
+            <p>No appeals found.</p>
+        </template>
+    </div>
+</template>

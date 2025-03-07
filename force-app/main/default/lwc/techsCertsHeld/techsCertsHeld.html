@@ -1,0 +1,30 @@
+<template>
+
+    <lightning-card title={cardTitle} icon-name="utility:list">
+
+        <lightning-button
+            slot="actions"
+            label="Delete"
+            variant="destructive"
+            onclick={handleDelete}
+            disabled={disabledDeleteButton}
+            >
+        </lightning-button>
+
+    </lightning-card>
+
+    <template lwc:if={errorMessage}>
+        <div class="slds-var-p-horizontal_small" style="color: red">
+            {errormessage}
+        </div>
+    </template>
+
+    <lightning-datatable
+      key-field="id"
+      data={rowData}
+      columns={colData}
+      onrowselection={handleSelections}
+    >
+    </lightning-datatable>
+    
+</template>

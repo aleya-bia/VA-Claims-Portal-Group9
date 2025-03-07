@@ -1,0 +1,8 @@
+<template>
+    <lightning-button label="Open Flow" onclick={handleClick} class="slds-m-around_medium"></lightning-button>
+
+    <!-- Modal to display the Flow -->
+    <lightning-modal is-open={isModalOpen} size="large" header="VA Claims Portal Flow">
+        <lightning-flow aura:id="flow" flow-name="Self_Registration_Flow" onstatuschange={handleStatusChange}></lightning-flow>
+    </lightning-modal>
+</template>

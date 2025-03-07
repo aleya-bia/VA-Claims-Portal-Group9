@@ -1,0 +1,144 @@
+<template>
+    <lightning-card>
+        <div style="font-size: 1.5rem; font-weight: bold; padding: 0.5rem 1rem 0.01rem; text-align: center;">
+            Submit a Claim
+        </div>
+        <lightning-combobox
+            class="slds-p-around_medium"
+            data-id="claimCombo"
+            label="Claim Type"
+            value={claimType}
+            placeholder="Select the type of Claim you are filing"
+            options={claimTypeList}
+            onchange={handleChange}
+        ></lightning-combobox>
+    </lightning-card>
+
+    <lightning-card>
+
+        <template lwc:if={displayValue}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="claimReason"
+                type="text"
+                label="Please share the reason for this claim:"
+                placeholder="Enter reason..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+                required
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayDisabilityCompSpecific}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="disabilityDate"
+                type="date"
+                label="Enter the date when this disability began or worsened:"
+                placeholder="Select Date"
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayPensionSpecific}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="ageCheck"
+                type="checkbox"
+                label="Are you 65 or older?"
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="disabilityInfo"
+                type="text"
+                label="Enter disability information:"
+                placeholder="Enter details..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayIncomeAndCredit}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="incomeCredit"
+                type="text"
+                label="Please input your Income details and Credit Score"
+                placeholder="Enter details..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayHealthcareBenefitSpecific}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="healthStatus"
+                type="text"
+                label="Please Describe your curent health status:"
+                placeholder="Enter details..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayEdAndTrainingSpecific}>
+            
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="educationType"
+                type="text"
+                label="Please describe the type of education or training you are recieving:"
+                placeholder="Enter description..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+            
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="educationInstitution"
+                type="text"
+                label="Please name the Institution you are recieving instruction from:"
+                placeholder="Enter institution..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+            
+        </template>
+
+        <template lwc:if={displayHousingAssistSpecific}>
+            <lightning-input
+                class="slds-p-around_medium"
+                data-id="housingStatus"
+                type="text"
+                label="Please Describe your current housing status:"
+                placeholder="Enter description..."
+                onfocus={handleEmphasizeHelp}
+                onblur={handleRemoveEmphasis}
+            ></lightning-input>
+        </template>
+
+        <template lwc:if={displayValue}>
+
+            <div class="slds-p-around_medium">
+                <lightning-file-upload
+                    label="Attatch any supporting documents, such as medical records or witness statements."
+                    accept={formats}
+                    onuploadfinished={handleUploadDone}
+                ></lightning-file-upload>
+            </div>
+
+            <lightning-button
+                class="slds-p-around_medium"
+                label="Submit Claim"
+                onclick={handleClick}
+            ></lightning-button>
+
+        </template>
+
+    </lightning-card>
+</template>

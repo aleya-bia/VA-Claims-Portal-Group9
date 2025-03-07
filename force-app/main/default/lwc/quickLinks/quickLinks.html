@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+        <!-- Navigation Bar -->
+        <div class="nav-container">
+            <template for:each={links} for:item="link">
+                <a key={link.label} class="nav-link" data-url={link.url} onclick={navigate}>
+                    {link.label}
+                </a>
+            </template>
+        </div>
+    </lightning-card>
+</template>
